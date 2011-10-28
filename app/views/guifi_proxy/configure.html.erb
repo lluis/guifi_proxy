@@ -1,0 +1,18 @@
+<%= klass_menu "GuifiProxy" %>
+
+<% labelled_tabular_form_for :guifi_proxy, @klass, :url=>{:action=>'configure'} do |f| -%>
+  <%= f.error_messages %>
+
+  <h3>Guifi-proxy</h3>
+  <%= render :partial => "guifi_proxy", :locals => {:f => f} %>
+
+  <h3>Squid</h3>
+  <%= render :partial => "squid", :locals => {:f => f} %>
+
+  <p><%= submit_tag("Save")%></p>
+
+<% end -%>
+
+<hr />
+
+<p><%= link_to "Back", :controller => 'klass', :action => 'list', :id => @node %></p>

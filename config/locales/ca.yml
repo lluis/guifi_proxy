@@ -1,0 +1,9 @@
+ca:
+  field_guifi_base_url: Base URL
+  field_guifi_node_number: Numero de node
+  field_guifi_squid_realm: Nom del proxy
+  field_guifi_squid_port: Port del proxy
+  field_guifi_squid_lan: Rang de la xarxa local
+  help_guifi_squid_realm: Missatge que sortirà al demanar l'autenticació
+  help_guifi_squid_lan: (opcional) Rang de la xarxa local,<br />per al que no es demanarà autenticació<br />(ex. 192.168.0.0/16)
+  help_guifi_node_number: Número del node del proxy

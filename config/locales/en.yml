@@ -1,0 +1,10 @@
+en:
+  field_guifi_base_url: Base URL
+  field_guifi_node_number: Node number
+  field_guifi_squid_realm: Realm
+  field_guifi_squid_port: Port
+  field_guifi_squid_lan: LAN IP range
+  help_guifi_squid_realm: Message shown at authentication prompt
+  help_guifi_squid_lan: (optional) LAN Network,<br />which can access proxy without authenticate<br />(ex. 192.168.0.0/16)
+  help_guifi_node_number: Proxy node noumber
+

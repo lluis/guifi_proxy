@@ -1,0 +1,74 @@
+auth_param basic program /usr/lib/squid/ncsa_auth /etc/guifi-proxy/passwd
+auth_param basic children 5
+auth_param basic realm proxy <%= guifi_squid_realm %>
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive off
+
+acl all src all
+acl manager proto cache_object
+acl localhost src 127.0.0.1/32
+acl to_localhost dst 127.0.0.0/8 0.0.0.0/32
+
+<% if guifi_squid_lan -%>
+acl localnet src <%=guifi_squid_lan%>
+<% end -%>
+
+#
+acl SSL_ports port 443          # https
+acl Safe_ports port 80          # http
+acl Safe_ports port 443         # https
+acl purge method PURGE
+acl CONNECT method CONNECT
+
+http_access allow manager localhost<%= " localnet" if guifi_squid_lan %>
+http_access deny manager
+# Only allow purge requests from localhost
+http_access allow purge localhost<%= " localnet" if guifi_squid_lan %>
+http_access deny purge
+# Deny requests to unknown ports
+http_access deny !Safe_ports
+# Deny CONNECT to other than SSL ports
+http_access deny CONNECT !SSL_ports
+#
+# Example rule allowing access from your local networks.
+# Adapt localnet in the ACL section to list your (internal) IP networks
+# from where browsing should be allowed
+<% if guifi_squid_lan -%>
+http_access allow localnet
+<% end -%>
+http_access allow localhost
+
+acl usuarios_autenticados proxy_auth REQUIRED
+http_access allow usuarios_autenticados
+
+# And finally deny all other access to this proxy
+http_access deny all
+
+#Allow ICP queries from local networks only
+<% if guifi_squid_lan -%>
+icp_access allow localnet
+<% end -%>
+icp_access deny all
+
+# Squid normally listens to port 3128
+http_port <%= guifi_squid_port %>
+
+hierarchy_stoplist cgi-bin ?
+access_log /var/log/squid/access.log squid
+
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern (Release|Package(.gz)*)$        0       20%     2880
+refresh_pattern .               0       20%     4320
+
+acl shoutcast rep_header X-HTTP09-First-Line ^ICY.[0-9]
+upgrade_http0.9 deny shoutcast
+
+acl apache rep_header Server ^Apache
+broken_vary_encoding allow apache
+
+extension_methods REPORT MERGE MKACTIVITY CHECKOUT
+
+hosts_file /etc/hosts
+coredump_dir /var/spool/squid
