@@ -1,6 +1,7 @@
 class guifi_proxy {
 
   include common::squid
+  include common::apt
 
   file {
     "/etc/apt/sources.list.d/guifi.list":
