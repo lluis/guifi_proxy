@@ -12,7 +12,7 @@ class guifi_proxy {
       require => Package["guifi-proxy"];
     "/etc/squid/squid.conf":
       content => template("guifi_proxy/squid.conf.erb"),
-      require => Package["squid"],
+      require => Package["guifi-proxy"],
       notify => Service["squid"];
   }
 
