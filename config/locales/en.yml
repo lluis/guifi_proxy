@@ -5,6 +5,6 @@ en:
   field_guifi_squid_port: Port
   field_guifi_squid_lan: LAN IP range
   help_guifi_squid_realm: Message shown at authentication prompt
-  help_guifi_squid_lan: (optional) LAN Network,<br />which can access proxy without authenticate<br />(ex. 192.168.0.0/16)
+  help_guifi_squid_lan: (optional) LAN Network that can navigate whithout autentication<br />and has cache management access<br />(ex. 192.168.0.0/16)
   help_guifi_node_number: Proxy node noumber
-
+  field_guifi_squid_logformat: Squid log format

@@ -1,3 +1,8 @@
 <p><%=f.text_field(:guifi_squid_realm)%> <%=help(:help_guifi_squid_realm)%></p>
 <p><%=f.text_field(:guifi_squid_port)%></p>
 <p><%=f.text_field(:guifi_squid_lan)%> <%=help(:help_guifi_squid_lan)%></p>
+<p><%= label :guifi_squid_logformat, l(:field_guifi_squid_logformat) %>
+<%=f.radio_button(:guifi_squid_logformat, :squid)%>  squid<br />
+<%=f.radio_button(:guifi_squid_logformat, :squidmime)%>  squidmime<br />
+<%=f.radio_button(:guifi_squid_logformat, :common)%>  common<br />
+<%=f.radio_button(:guifi_squid_logformat, :combined)%> combined</p>

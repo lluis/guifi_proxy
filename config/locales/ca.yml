@@ -5,5 +5,6 @@ ca:
   field_guifi_squid_port: Port del proxy
   field_guifi_squid_lan: Rang de la xarxa local
   help_guifi_squid_realm: Missatge que sortirà al demanar l'autenticació
-  help_guifi_squid_lan: (opcional) Rang de la xarxa local,<br />per al que no es demanarà autenticació<br />(ex. 192.168.0.0/16)
+  help_guifi_squid_lan: (opcional) Rang que pot navegar sense autenticació<br />i que té acces a la gestió de la caché<br />(ex. 192.168.0.0/16)
   help_guifi_node_number: Número del node del proxy
+  field_guifi_squid_logformat: Format del log de l'Squid
